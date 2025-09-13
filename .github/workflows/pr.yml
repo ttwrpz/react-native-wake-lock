@@ -34,13 +34,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'yarn'
 
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            .yarn/cache
+            .yarn/install-state.gz
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Build library
         run: yarn prepare
@@ -51,7 +60,7 @@ jobs:
           size=$(du -sk lib | cut -f1)
           echo "Bundle size: ${size}KB"
           if [ $size -gt 50 ]; then
-            echo "⚠️ Warning: Bundle size exceeds 50KB"
+            echo "Warning: Bundle size exceeds 50KB"
           fi
 
   code-quality:
@@ -63,13 +72,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'yarn'
 
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            .yarn/cache
+            .yarn/install-state.gz
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Check formatting
         run: |
