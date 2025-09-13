@@ -1,0 +1,50 @@
+name: Publish Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  preview:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build library
+        run: yarn prepare
+
+      - name: Version preview
+        id: version
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          PREVIEW_VERSION=$(node -p "require('./package.json').version")-preview.${PR_NUMBER}.$(date +%s)
+          echo "version=${PREVIEW_VERSION}" >> $GITHUB_OUTPUT
+          npm version ${PREVIEW_VERSION} --no-git-tag-version
+
+      - name: Publish preview
+        run: npm publish --tag preview --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const version = '${{ steps.version.outputs.version }}';
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `📦 Preview version published: \`@ttwrpz/react-native-wake-lock@${version}\`\n\nInstall with:\n\`\`\`bash\nnpm install @ttwrpz/react-native-wake-lock@${version}\n\`\`\``
+            })

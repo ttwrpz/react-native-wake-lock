@@ -1,0 +1,52 @@
+# Source files (we ship compiled versions)
+src/
+!lib/
+
+# Config files not needed in package
+.eslintrc*
+.prettierrc*
+.gitignore
+.editorconfig
+tsconfig.json
+tsconfig.build.json
+
+# Development files
+example/
+__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Build artifacts
+*.log
+.DS_Store
+coverage/
+.turbo/
+
+# Documentation files (keep README)
+CONTRIBUTING.md
+INSTALL.md
+
+# Git
+.git/
+.github/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# iOS build files
+ios/build/
+*.xcworkspace
+*.xcuserstate
+
+# Android build files
+android/build/
+android/.gradle/
+android/local.properties
+
+# Temporary files
+*.tmp
+*.swp

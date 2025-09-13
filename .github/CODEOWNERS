@@ -1,0 +1,14 @@
+# Default owner for everything
+* @ttwrpz
+
+# Android specific
+/android/ @ttwrpz
+
+# iOS specific
+/ios/ @ttwrpz
+
+# Core library
+/src/ @ttwrpz
+
+# CI/CD
+/.github/ @ttwrpz

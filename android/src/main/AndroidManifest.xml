@@ -1,0 +1,3 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- No special permissions needed for wake lock via FLAG_KEEP_SCREEN_ON -->
+</manifest>

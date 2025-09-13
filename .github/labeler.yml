@@ -1,0 +1,30 @@
+android:
+  - android/**/*
+
+ios:
+  - ios/**/*
+
+documentation:
+  - README.md
+  - INSTALL.md
+  - docs/**/*
+
+dependencies:
+  - package.json
+  - yarn.lock
+
+typescript:
+  - src/**/*.ts
+  - src/**/*.tsx
+  - tsconfig.json
+  - tsconfig.build.json
+
+ci:
+  - .github/**/*
+
+tests:
+  - '**/*.test.ts'
+  - '**/*.test.tsx'
+  - '**/*.spec.ts'
+  - '**/*.spec.tsx'
+  - jest.config.js
