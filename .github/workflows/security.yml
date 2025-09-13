@@ -35,8 +35,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      - name: Install audit plugin
+        run: yarn plugin import npmAudit
+
       - name: Run audit
-        run: yarn audit --level moderate
+        run: yarn npm audit --level moderate
 
   codeql:
     runs-on: ubuntu-latest
