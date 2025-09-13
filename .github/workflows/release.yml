@@ -55,9 +55,18 @@ jobs:
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             npm version ${{ github.event.inputs.version }} --no-git-tag-version
           fi
-          npm publish --access public
+          npm publish --registry=https://registry.npmjs.org/ --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to Github
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            npm version ${{ github.event.inputs.version }} --no-git-tag-version
+          fi
+          npm publish --registry=https://npm.pkg.github.com/ --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
