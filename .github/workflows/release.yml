@@ -55,7 +55,7 @@ jobs:
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             npm version ${{ github.event.inputs.version }} --no-git-tag-version
           fi
-          npm publish --registry=https://registry.npmjs.org/ --access public
+          npm publish --registry=https://registry.npmjs.org/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -64,7 +64,7 @@ jobs:
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             npm version ${{ github.event.inputs.version }} --no-git-tag-version
           fi
-          npm publish --registry=https://npm.pkg.github.com/ --access public
+          npm publish --registry=https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
