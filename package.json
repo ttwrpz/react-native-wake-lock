@@ -1,6 +1,6 @@
 {
   "name": "@ttwrpz/react-native-wake-lock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wake lock for React Native with battery awareness, auto-timeout, and lifecycle management",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
