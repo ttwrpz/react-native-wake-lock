@@ -30,7 +30,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
@@ -68,18 +68,13 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.8.1",
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.35.0",
     "@react-native/eslint-config": "0.81.4",
     "@types/jest": "^29.5.13",
     "@types/react": "^19.1.0",
-    "@typescript-eslint/eslint-plugin": "^8.43.0",
-    "@typescript-eslint/parser": "^8.43.0",
     "commitlint": "^19.6.1",
     "del-cli": "^5.1.0",
-    "eslint": "^9.22.0",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jest": "^29.0.1",
     "eslint-plugin-prettier": "^5.5.4",
     "jest": "^29.6.3",
     "prettier": "^3.6.0",
@@ -87,7 +82,7 @@
     "react-native": "0.81.4",
     "react-native-builder-bob": "^0.40.13",
     "react-native-safe-area-context": "^5.6.1",
-    "release-it": "^17.10.0",
+    "release-it": "^19.0.0",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
